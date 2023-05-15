@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@mdi/font': ^7.2.96
   '@vitejs/plugin-vue': ^4.1.0
   axios: ^1.4.0
   vite: ^4.3.2
@@ -17,6 +18,7 @@ dependencies:
   vuetify: 3.2.4_vue@3.3.2
 
 devDependencies:
+  '@mdi/font': 7.2.96
   '@vitejs/plugin-vue': 4.2.3_vite@4.3.6+vue@3.3.2
   vite: 4.3.6
 
@@ -245,6 +247,10 @@ packages:
 
   /@jridgewell/sourcemap-codec/1.4.15:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
+
+  /@mdi/font/7.2.96:
+    resolution: {integrity: sha512-e//lmkmpFUMZKhmCY9zdjRe4zNXfbOIJnn6xveHbaV2kSw5aJ5dLXUxcRt1Gxfi7ZYpFLUWlkG2MGSFAiqAu7w==}
+    dev: true
 
   /@vitejs/plugin-vue/4.2.3_vite@4.3.6+vue@3.3.2:
     resolution: {integrity: sha512-R6JDUfiZbJA9cMiguQ7jxALsgiprjBeHL5ikpXfJCH62pPHtI+JdJ5xWj6Ev73yXSlYl86+blXn1kZHQ7uElxw==}
