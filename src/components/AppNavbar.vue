@@ -1,12 +1,19 @@
 <script>
     import image from '../assets/header-red.jpg';
     import logo from '../assets/pokeball-logo.png'
+    import { RouterLink } from 'vue-router';
 
     export default(await import('vue')).defineComponent({
         data() {
             return{
                 image: image,
                 logo: logo,
+                navItems: [
+                    { title: 'Pokemon', to: '/' },
+                    { title: 'Berries', to: '/berries' },
+                    { title: 'Contests', to: '/contest' },
+                    { title: 'TM Machines', to: '/tm_machines' },
+                ],
             }
         },
     })
@@ -32,7 +39,21 @@
         <v-spacer/>
 
         <template v-slot:append>
-            <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            <v-menu>
+                <template v-slot:activator="{ props }">
+                    <v-app-bar-nav-icon v-bind="props"></v-app-bar-nav-icon>
+                </template>
+                <v-list>
+                    <v-list-item
+                        v-for="(item, index) in navItems"
+                        :key="index"
+                        :value="index"
+                        :to="item.to"
+                    >
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
         </template>
     </v-app-bar>
 </template>

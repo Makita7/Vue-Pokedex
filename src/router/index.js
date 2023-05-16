@@ -18,6 +18,16 @@ const router = createRouter({
             path: '/berries',
             component: () => import( /* webpackChunkName: "berries" */ "../pages/BerriesPage.vue"),
         },
+        {
+            name: 'Contest',
+            path: '/contest',
+            component: () => import( /* webpackChunkName: "berries" */ "../pages/ContestPage.vue"),
+        },
+        {
+            name: 'TM Machines',
+            path: '/tm_machines',
+            component: () => import( /* webpackChunkName: "tm_machines" */ "../pages/MachinePages.vue"),
+        },
     ]
 })
 
