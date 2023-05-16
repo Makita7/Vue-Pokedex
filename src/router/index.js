@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
-import StartPage from '../pages/StartPage.vue';
+import PokemonPage from '../pages/PokemonPage.vue';
 
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            name: 'Start',
+            name: 'Pokemon',
             path: '/',
-            component: StartPage,
+            component: PokemonPage,
         },
         // {
         //     name: 'Tip Calculator',
