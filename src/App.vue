@@ -21,7 +21,7 @@
 <template>
   <v-app>
     <AppNavbar/>
-    <v-card class="topFix">
+    <v-card class="topFix elevation-0">
       <RouterView/>
     </v-card>
   </v-app>

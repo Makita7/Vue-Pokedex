@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import PokemonPage from '../pages/PokemonPage.vue';
 
+/* add nested routes with dynamic routing to use only one component to show the details */
+
+/* page sectors: pokemon + evolution + encounters + location + moves , berries, contest + berries, machine TMs */
 
 const router = createRouter({
     history: createWebHistory(),
@@ -10,11 +13,11 @@ const router = createRouter({
             path: '/',
             component: PokemonPage,
         },
-        // {
-        //     name: 'Tip Calculator',
-        //     path: '/tip_calculator',
-        //     component: () => import( /* webpackChunkName: "tip calculator" */ "../pages/TipCalculatorPage.vue"),
-        // },
+        {
+            name: 'Berries',
+            path: '/berries',
+            component: () => import( /* webpackChunkName: "berries" */ "../pages/BerriesPage.vue"),
+        },
     ]
 })
 
