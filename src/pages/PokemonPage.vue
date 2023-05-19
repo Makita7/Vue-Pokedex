@@ -74,7 +74,6 @@
         min-height: 14rem;
         text-align: center;
         img{
-        /* min-width: 3rem; */
             width: 35%;
         }
         .indexNum{

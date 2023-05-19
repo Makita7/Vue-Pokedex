@@ -28,7 +28,17 @@ const router = createRouter({
             path: '/tm_machines',
             component: () => import( /* webpackChunkName: "tm_machines" */ "../pages/MachinePages.vue"),
         },
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition){
+        if(savedPosition) {
+            return{
+                savedPosition,
+                behacior: smooth,
+            }
+        } else {
+            return { x: 0, y: 0, behacior: smooth,}
+        }
+    }
 })
 
 export default router;
