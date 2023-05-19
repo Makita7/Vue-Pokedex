@@ -7,15 +7,16 @@
                 pokemon: [],
                 imgUrl: '',
                 gifUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/',
+                nextUrl: '',
             }
         },
         props:{
             pokemon: Object
         },
         methods: {
-            async fetchPokemon(){
-                const res = await axios
-                    .get('https://pokeapi.co/api/v2/pokemon/?limit=10&offset=10')
+            fetchPokemon(){
+                const res = axios
+                    .get('https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20')
                     .then((res) => {
                     sessionStorage.setItem("pokemon", JSON.stringify(res.data));
                     return this.pokemon = res.data;
@@ -24,12 +25,24 @@
                     console.log(error);
                 });
             },
+            fetchPrevNextPokemon(url){
+                const res = axios
+                    .get(url)
+                    .then((res) => {
+                        sessionStorage.setItem("pokemon", JSON.stringify(res.data));
+                        return this.pokemon = res.data;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
+
         },
         async mounted() {
-                if( sessionStorage.getItem("pokemon") ){
-                this.pokemon = JSON.parse(sessionStorage.getItem("pokemon"))
+            if( sessionStorage.getItem("pokemon") === true){
+                this.pokemon = sessionStorage.getItem("pokemon")
             } else{
-                await this.fetchPokemon();
+                this.fetchPokemon();
             }
         },
     })
@@ -37,15 +50,21 @@
 </script>
 
 <template>
-    <div class="d-flex topFix flex-wrap justify-space-evenly">
-        <v-card class="pokeCard pa-2 ma-4" v-for="i in pokemon.results" :key="i.url">
-            <p class="text-center text-capitalize mt-3">{{ i.name }}</p>
-            <img class="ma-3" :src='gifUrl + i.url.slice(34, 36) + ".gif"' />
-            <v-card-actions class="text-right">
-                <v-spacer/>
-                <p class="text-right font-weight-medium mt-auto mb-0">{{ i.url.slice(34, 36) }}</p>
-            </v-card-actions>
-        </v-card>
+    <div v-if="pokemon">
+        <div class="d-flex topFix flex-wrap justify-space-evenly" >
+            <v-card class="pokeCard pa-2 ma-4" v-for="i in pokemon.results" :key="i.url">
+                <p class="text-center text-uppercase pt-3 pb-2 mb-2 BCname text-h6">{{ i.name }}</p>
+                <img class="ma-3" :src='gifUrl + i.url.match(/\/(\d+)\//)[1] + ".gif"' />
+                <p class="text-right font-weight-medium mt-auto mb-0 indexNum">{{ i.url.match(/\/(\d+)\//)[1] }}</p>
+            </v-card>
+        </div>
+        <div class="d-flex justify-space-between ma-8 mb-4">
+            <v-btn @click="fetchPrevNextPokemon(pokemon.previous)" color="blue-grey">Prev.</v-btn>
+            <v-btn @click="fetchPrevNextPokemon(pokemon.next)" color="blue-grey">Next</v-btn>
+        </div>
+    </div>
+    <div v-else>
+        no pokemon
     </div>
 </template>
 
@@ -55,7 +74,17 @@
         min-height: 14rem;
         text-align: center;
         img{
-        min-width: 3rem;
+        /* min-width: 3rem; */
+            width: 35%;
+        }
+        .indexNum{
+            bottom: 1rem;
+            position: absolute;
+            right: 1rem;
+        }
+        .BCname{
+            background-color: antiquewhite;
+            border-radius: 10px;
         }
     }
 </style>
